@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Get the App</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#f6f7fb}
+    .card{max-width:440px;width:94%;padding:28px;border-radius:14px;background:#fff;box-shadow:0 6px 20px rgba(20,30,60,0.08);text-align:center}
+    h1{margin:0 0 10px;font-size:2=40px}
+    p{color:#556; margin:0 0 18px}
+    .btn{display:inline-block;padding:12px 18px;margin:8px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid #e6e9f2}
+    .ios{background:#fff}
+    .android{background:#fff}
+    .store-note{font-size:13px;color:#9aa; margin-top:12px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Get the NEW WZYN App</h1>
+    <p>Tap your store to continue — we’ll open the right place for your device.</p>
+
+    <!-- Replace the hrefs below with your app's store URLs -->
+    <a id="btn-ios" class="btn ios" href="https://apps.apple.com/us/app/wzyn-radio/id6741080810?platform=iphone" target="_blank" rel="noopener">App Store</a>
+    <a id="btn-android" class="btn android" href="https://play.google.com/store/apps/details?id=com.faithnetwork.wzynradio&pcampaignid=web_share" target="_blank" rel="noopener">Google Play</a>
+
+    <div class="store-note">Or <a id="web-link" href="#">open in browser</a></div>
+  </div>
+
+  <script>
+    // Replace these with your real store links
+    const iosUrl = "https://apps.apple.com/us/app/wzyn-radio/id6741080810?platform=iphone";
+    const androidUrl = "https://play.google.com/store/apps/details?id=com.faithnetwork.wzynradio&pcampaignid=web_share";
+    const webFallback = "https://wzyn.org";
+
+    // Device detection (simple & robust for redirects)
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isiOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    const isAndroid = /Android/.test(ua);
+
+    document.getElementById('btn-ios').href = iosUrl;
+    document.getElementById('btn-android').href = androidUrl;
+    document.getElementById('web-link').href = webFallback;
+
+    // Auto-redirect mobile visitors to their store (desktop stays on page)
+    if (isiOS) {
+      // small delay so user sees the page briefly (optional)
+      window.location.replace(iosUrl);
+    } else if (isAndroid) {
+      window.location.replace(androidUrl);
+    }
+  </script>
+</body>
+</html>
